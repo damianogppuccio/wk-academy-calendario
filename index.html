@@ -4,68 +4,72 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calendario Webinar Genya</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.6.0/dist/tabler-icons.min.css">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background:transparent; font-family:'Segoe UI',Arial,sans-serif; }
 
   .cal { max-width:736px; width:100%; }
-  .cal-wrap { border:1px solid #E6E8EC; border-radius:16px; overflow:hidden; background:#fff; }
+  .cal-wrap { border-radius:12px; overflow:hidden; background:#fff; border:1px solid #E0E0E0; }
 
-  .cal-header {
-    background:linear-gradient(135deg,#0B66B2,#094D8A);
-    padding:14px 20px;
+  .cal-header { background:#007AC3; padding:18px 24px 16px; }
+  .cal-title { font-size:18px; font-weight:600; color:#fff; display:flex; align-items:center; gap:8px; }
+  .cal-accent { width:40px; height:3px; background:#85BC20; border-radius:2px; margin-top:6px; }
+  .cal-sub { font-size:12px; color:rgba(255,255,255,.7); margin-top:6px; }
+
+  .cal-body { padding:6px 0; }
+
+  .ev-row { display:flex; align-items:stretch; padding:0 24px; text-decoration:none; }
+  .ev-row:hover .ev-content { background:#F8FBFD; }
+
+  .ev-timeline {
+    width:3px; background:#D6EBF7; margin:0 22px 0 1px;
+    flex-shrink:0; position:relative;
   }
-  .cal-title { font-size:17px; font-weight:700; color:#fff; letter-spacing:.2px; }
-  .cal-sub { font-size:12px; color:rgba(255,255,255,.8); margin-top:2px; }
-
-  .cal-body { padding:4px 20px 12px; }
-
-  .ev {
-    display:flex; align-items:center; gap:14px;
-    padding:10px 8px; margin:0 -8px;
-    border-bottom:1px solid #F0F2F5;
-    text-decoration:none; border-radius:8px;
-    transition:background .15s;
+  .ev-dot {
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
   }
-  .ev:last-child { border-bottom:none; }
-  .ev:hover { background:#F8FAFC; }
+  .ev-dot-future { width:9px; height:9px; background:#85BC20; border:2px solid #EBF5D0; }
+  .ev-dot-soon   { width:10px; height:10px; background:#F5A623; border:2px solid #FFF3CD; }
+  .ev-dot-live   { width:10px; height:10px; background:#E2231A; border:2px solid #FADADD; }
 
-  .ev-date {
-    min-width:48px; text-align:center;
-    background:#EEF5FB; border-radius:8px; padding:6px 4px;
-    flex-shrink:0;
+  .ev-content {
+    flex:1; display:flex; align-items:center; gap:14px;
+    padding:13px 0; border-bottom:1px solid #F0F0F0;
+    transition:background .15s; border-radius:6px;
   }
-  .ev-dd { font-size:18px; font-weight:700; color:#0B66B2; line-height:1; }
-  .ev-mm { font-size:10px; color:#5A8BB8; text-transform:uppercase; letter-spacing:.5px; margin-top:1px; }
+  .ev-row:last-child .ev-content { border-bottom:none; }
+
+  .ev-date { min-width:44px; text-align:center; }
+  .ev-dd { font-size:20px; font-weight:700; color:#007AC3; line-height:1; }
+  .ev-mm { font-size:10px; color:#4FA8D8; text-transform:uppercase; letter-spacing:.5px; margin-top:2px; }
 
   .ev-info { flex:1; min-width:0; }
-  .ev-title { font-size:13px; font-weight:600; color:#111827; }
-  .ev-time { font-size:11px; color:#6B7280; margin-top:1px; }
+  .ev-name { font-size:14px; font-weight:600; color:#353535; }
+  .ev-time { font-size:12px; color:#777; margin-top:2px; display:flex; align-items:center; gap:4px; }
 
   .badge-live {
-    background:#DC2626; color:#fff;
+    background:#E2231A; color:#fff;
     font-size:11px; font-weight:700;
-    padding:3px 10px; border-radius:20px;
-    white-space:nowrap; letter-spacing:.5px;
+    padding:4px 12px; border-radius:20px;
+    white-space:nowrap; letter-spacing:.3px;
     animation:pulse 1.2s ease-in-out infinite;
     flex-shrink:0;
   }
   .badge-soon {
-    background:#FFF3E0; color:#E65100;
+    background:#FFF3CD; color:#7D6608;
     font-size:11px; font-weight:600;
-    padding:3px 10px; border-radius:20px;
+    padding:4px 12px; border-radius:20px;
     white-space:nowrap; flex-shrink:0;
   }
 
-  .empty {
-    padding:24px 0; text-align:center;
-    color:#6B7280; font-size:13px;
-  }
+  .ev-chevron { font-size:16px; color:#D6EBF7; flex-shrink:0; }
 
-  @keyframes pulse {
-    0%,100% { opacity:1; }
-    50% { opacity:.35; }
-  }
+  .empty { padding:24px 0; text-align:center; color:#777; font-size:13px; }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
 </style>
 </head>
 <body>
@@ -92,26 +96,26 @@
     ╚══════════════════════════════════════════════════════════════════╝ */
 
 var EVENTS = [
-  { data:"27/05/2026", ora_inizio:"10:00", ora_fine:"23:00", titolo:"Overview",                   link:"https://google.it" },
-  { data:"27/05/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Contabilità IVA base",       link:"https://LINK" },
-  { data:"30/05/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Contabilità generale",       link:"https://LINK" },
-  { data:"02/06/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Gestione cespiti",           link:"https://LINK" },
-  { data:"06/06/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Bilancio e chiusure",        link:"https://LINK" },
-  { data:"09/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Dichiarazioni fiscali",      link:"https://LINK" },
-  { data:"13/06/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Fatturazione elettronica",   link:"https://LINK" },
-  { data:"16/06/2026", ora_inizio:"14:00", ora_fine:"15:00", titolo:"F24 e versamenti",           link:"https://LINK" },
-  { data:"20/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Ratei e risconti",           link:"https://LINK" },
-  { data:"23/06/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Note di credito e debito",   link:"https://LINK" },
-  { data:"27/06/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Liquidazione IVA",           link:"https://LINK" },
-  { data:"30/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Registri contabili",         link:"https://LINK" },
-  { data:"04/07/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Piano dei conti",            link:"https://LINK" },
-  { data:"07/07/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Scadenzario e pagamenti",    link:"https://LINK" },
-  { data:"11/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Ritenute d'acconto",         link:"https://LINK" },
-  { data:"14/07/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Comunicazioni periodiche",   link:"https://LINK" },
-  { data:"18/07/2026", ora_inizio:"14:00", ora_fine:"15:00", titolo:"Gestione clienti/fornitori", link:"https://LINK" },
-  { data:"21/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Ammortamenti",               link:"https://LINK" },
-  { data:"25/07/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Chiusura trimestrale",       link:"https://LINK" },
-  { data:"28/07/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Report personalizzati",      link:"https://LINK" },
+  { data:"27/05/2026", ora_inizio:"08:00", ora_fine:"22:00", titolo:"Overview",                   link:"https://google.com.au" },
+  { data:"27/05/2026", ora_inizio:"22:30", ora_fine:"23:30", titolo:"Contabilità IVA base",       link:"https://google.com.au" },
+  { data:"30/05/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Contabilità generale",       link:"https://google.com.au" },
+  { data:"02/06/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Gestione cespiti",           link:"https://google.com.au" },
+  { data:"06/06/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Bilancio e chiusure",        link:"https://google.com.au" },
+  { data:"09/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Dichiarazioni fiscali",      link:"https://google.com.au" },
+  { data:"13/06/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Fatturazione elettronica",   link:"https://google.com.au" },
+  { data:"16/06/2026", ora_inizio:"14:00", ora_fine:"15:00", titolo:"F24 e versamenti",           link:"https://google.com.au" },
+  { data:"20/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Ratei e risconti",           link:"https://google.com.au" },
+  { data:"23/06/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Note di credito e debito",   link:"https://google.com.au" },
+  { data:"27/06/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Liquidazione IVA",           link:"https://google.com.au" },
+  { data:"30/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Registri contabili",         link:"https://google.com.au" },
+  { data:"04/07/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Piano dei conti",            link:"https://google.com.au" },
+  { data:"07/07/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Scadenzario e pagamenti",    link:"https://google.com.au" },
+  { data:"11/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Ritenute d'acconto",         link:"https://google.com.au" },
+  { data:"14/07/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Comunicazioni periodiche",   link:"https://google.com.au" },
+  { data:"18/07/2026", ora_inizio:"14:00", ora_fine:"15:00", titolo:"Gestione clienti/fornitori", link:"https://google.com.au" },
+  { data:"21/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Ammortamenti",               link:"https://google.com.au" },
+  { data:"25/07/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Chiusura trimestrale",       link:"https://google.com.au" },
+  { data:"28/07/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Report personalizzati",      link:"https://google.com.au" },
 ];
 
 /* ══════════════════════════════════════════════════════════════════
@@ -123,18 +127,12 @@ var EVENTS = [
   var MESI = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
   var GIORNI = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
 
-  /* Converte "GG/MM/AAAA" + "HH:MM" in un Date nel fuso Europe/Rome */
-  function toRomeDate(dateStr, timeStr) {
+  function parseDate(dateStr, timeStr) {
     var d = dateStr.split('/');
     var t = timeStr.split(':');
-    /* Creiamo la data come se fosse UTC, poi calcoliamo l'offset Roma */
-    var iso = d[2]+'-'+d[1]+'-'+d[0]+'T'+t[0]+':'+t[1]+':00';
-    /* Trick: usiamo Intl per trovare l'offset di Roma in quel momento */
-    var naive = new Date(d[2], d[1]-1, d[0], t[0], t[1], 0);
-    return naive;
+    return new Date(+d[2], +d[1]-1, +d[0], +t[0], +t[1], 0);
   }
 
-  /* Ora corrente nel fuso Europe/Rome (funziona anche se il browser è in altro fuso) */
   function nowRome() {
     var s = new Date().toLocaleString('en-US', { timeZone:'Europe/Rome' });
     return new Date(s);
@@ -146,8 +144,8 @@ var EVENTS = [
     var list = EVENTS
       .map(function(e) {
         return {
-          start:  toRomeDate(e.data, e.ora_inizio),
-          end:    toRomeDate(e.data, e.ora_fine),
+          start:  parseDate(e.data, e.ora_inizio),
+          end:    parseDate(e.data, e.ora_fine),
           titolo: e.titolo,
           link:   e.link,
           oi:     e.ora_inizio,
@@ -168,21 +166,34 @@ var EVENTS = [
       var isLive = now >= e.start && now < e.end;
       var isSoon = !isLive && diff > 0 && diff <= 30 * 60 * 1000;
 
+      var dotClass = 'ev-dot-future';
+      if (isLive)      dotClass = 'ev-dot-live';
+      else if (isSoon) dotClass = 'ev-dot-soon';
+
       var badge = '';
-      if (isLive)      badge = '<span class="badge-live">● LIVE</span>';
+      if (isLive)      badge = '<span class="badge-live">\u25CF LIVE</span>';
       else if (isSoon) badge = '<span class="badge-soon">Tra poco live</span>';
 
       rows += ''
-        + '<a class="ev" href="' + (e.link || '#') + '" target="_blank">'
-        +   '<div class="ev-date">'
-        +     '<div class="ev-dd">' + dd + '</div>'
-        +     '<div class="ev-mm">' + mm + '</div>'
+        + '<a class="ev-row" href="' + (e.link || '#') + '" target="_blank">'
+        +   '<div class="ev-timeline">'
+        +     '<div class="ev-dot ' + dotClass + '"></div>'
         +   '</div>'
-        +   '<div class="ev-info">'
-        +     '<div class="ev-title">' + e.titolo + '</div>'
-        +     '<div class="ev-time">' + gg + ' · ' + e.oi + ' – ' + e.of + '</div>'
+        +   '<div class="ev-content">'
+        +     '<div class="ev-date">'
+        +       '<div class="ev-dd">' + dd + '</div>'
+        +       '<div class="ev-mm">' + mm + '</div>'
+        +     '</div>'
+        +     '<div class="ev-info">'
+        +       '<div class="ev-name">' + e.titolo + '</div>'
+        +       '<div class="ev-time">'
+        +         '<i class="ti ti-clock" style="font-size:13px;" aria-hidden="true"></i>'
+        +         gg + ' \u00B7 ' + e.oi + ' \u2013 ' + e.of
+        +       '</div>'
+        +     '</div>'
+        +     badge
+        +     '<i class="ti ti-chevron-right ev-chevron" aria-hidden="true"></i>'
         +   '</div>'
-        +   badge
         + '</a>';
     });
 
@@ -193,7 +204,11 @@ var EVENTS = [
     document.getElementById('cal').innerHTML = ''
       + '<div class="cal-wrap">'
       +   '<div class="cal-header">'
-      +     '<div class="cal-title">Calendario webinar Genya</div>'
+      +     '<div class="cal-title">'
+      +       '<i class="ti ti-calendar-event" style="font-size:20px;" aria-hidden="true"></i>'
+      +       'Calendario webinar Genya'
+      +     '</div>'
+      +     '<div class="cal-accent"></div>'
       +     '<div class="cal-sub">Prossimi eventi in programma</div>'
       +   '</div>'
       +   '<div class="cal-body">' + rows + '</div>'
