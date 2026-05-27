@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendario Webinar Genya</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:transparent; font-family:'Segoe UI',Arial,sans-serif; }
+
+  .cal { max-width:736px; width:100%; }
+  .cal-wrap { border:1px solid #E6E8EC; border-radius:16px; overflow:hidden; background:#fff; }
+
+  .cal-header {
+    background:linear-gradient(135deg,#0B66B2,#094D8A);
+    padding:14px 20px;
+  }
+  .cal-title { font-size:17px; font-weight:700; color:#fff; letter-spacing:.2px; }
+  .cal-sub { font-size:12px; color:rgba(255,255,255,.8); margin-top:2px; }
+
+  .cal-body { padding:4px 20px 12px; }
+
+  .ev {
+    display:flex; align-items:center; gap:14px;
+    padding:10px 8px; margin:0 -8px;
+    border-bottom:1px solid #F0F2F5;
+    text-decoration:none; border-radius:8px;
+    transition:background .15s;
+  }
+  .ev:last-child { border-bottom:none; }
+  .ev:hover { background:#F8FAFC; }
+
+  .ev-date {
+    min-width:48px; text-align:center;
+    background:#EEF5FB; border-radius:8px; padding:6px 4px;
+    flex-shrink:0;
+  }
+  .ev-dd { font-size:18px; font-weight:700; color:#0B66B2; line-height:1; }
+  .ev-mm { font-size:10px; color:#5A8BB8; text-transform:uppercase; letter-spacing:.5px; margin-top:1px; }
+
+  .ev-info { flex:1; min-width:0; }
+  .ev-title { font-size:13px; font-weight:600; color:#111827; }
+  .ev-time { font-size:11px; color:#6B7280; margin-top:1px; }
+
+  .badge-live {
+    background:#DC2626; color:#fff;
+    font-size:11px; font-weight:700;
+    padding:3px 10px; border-radius:20px;
+    white-space:nowrap; letter-spacing:.5px;
+    animation:pulse 1.2s ease-in-out infinite;
+    flex-shrink:0;
+  }
+  .badge-soon {
+    background:#FFF3E0; color:#E65100;
+    font-size:11px; font-weight:600;
+    padding:3px 10px; border-radius:20px;
+    white-space:nowrap; flex-shrink:0;
+  }
+
+  .empty {
+    padding:24px 0; text-align:center;
+    color:#6B7280; font-size:13px;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity:1; }
+    50% { opacity:.35; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cal" id="cal"></div>
+
+<script>
+/*  ╔══════════════════════════════════════════════════════════════════╗
+    ║           📅  TABELLA EVENTI — COMPILARE QUI  📅               ║
+    ║                                                                 ║
+    ║  Inserire fino a 20 eventi. Il widget mostra automaticamente   ║
+    ║  i prossimi 6 non ancora terminati, in ordine cronologico.     ║
+    ║  Gli eventi passati vengono scartati da soli.                  ║
+    ║                                                                 ║
+    ║  ● 30 min prima dell'inizio → badge arancione "Tra poco live" ║
+    ║  ● Durante l'evento         → badge rosso lampeggiante "LIVE" ║
+    ║                                                                 ║
+    ║  Formato:                                                       ║
+    ║    data        "GG/MM/AAAA"                                    ║
+    ║    ora_inizio  "HH:MM"        (formato 24h, orario Roma)      ║
+    ║    ora_fine    "HH:MM"        (formato 24h, orario Roma)      ║
+    ║    titolo      "Nome del webinar"                              ║
+    ║    link        "https://..."  (URL iscrizione/accesso)         ║
+    ╚══════════════════════════════════════════════════════════════════╝ */
+
+var EVENTS = [
+  { data:"27/05/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Overview",                   link:"https://LINK" },
+  { data:"27/05/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Contabilità IVA base",       link:"https://LINK" },
+  { data:"30/05/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Contabilità generale",       link:"https://LINK" },
+  { data:"02/06/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Gestione cespiti",           link:"https://LINK" },
+  { data:"06/06/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Bilancio e chiusure",        link:"https://LINK" },
+  { data:"09/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Dichiarazioni fiscali",      link:"https://LINK" },
+  { data:"13/06/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Fatturazione elettronica",   link:"https://LINK" },
+  { data:"16/06/2026", ora_inizio:"14:00", ora_fine:"15:00", titolo:"F24 e versamenti",           link:"https://LINK" },
+  { data:"20/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Ratei e risconti",           link:"https://LINK" },
+  { data:"23/06/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Note di credito e debito",   link:"https://LINK" },
+  { data:"27/06/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Liquidazione IVA",           link:"https://LINK" },
+  { data:"30/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Registri contabili",         link:"https://LINK" },
+  { data:"04/07/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Piano dei conti",            link:"https://LINK" },
+  { data:"07/07/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Scadenzario e pagamenti",    link:"https://LINK" },
+  { data:"11/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Ritenute d'acconto",         link:"https://LINK" },
+  { data:"14/07/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Comunicazioni periodiche",   link:"https://LINK" },
+  { data:"18/07/2026", ora_inizio:"14:00", ora_fine:"15:00", titolo:"Gestione clienti/fornitori", link:"https://LINK" },
+  { data:"21/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Ammortamenti",               link:"https://LINK" },
+  { data:"25/07/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Chiusura trimestrale",       link:"https://LINK" },
+  { data:"28/07/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Report personalizzati",      link:"https://LINK" },
+];
+
+/* ══════════════════════════════════════════════════════════════════
+   DA QUI IN POI NON MODIFICARE
+   ══════════════════════════════════════════════════════════════════ */
+
+(function(){
+
+  var MESI = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+  var GIORNI = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
+
+  /* Converte "GG/MM/AAAA" + "HH:MM" in un Date nel fuso Europe/Rome */
+  function toRomeDate(dateStr, timeStr) {
+    var d = dateStr.split('/');
+    var t = timeStr.split(':');
+    /* Creiamo la data come se fosse UTC, poi calcoliamo l'offset Roma */
+    var iso = d[2]+'-'+d[1]+'-'+d[0]+'T'+t[0]+':'+t[1]+':00';
+    /* Trick: usiamo Intl per trovare l'offset di Roma in quel momento */
+    var naive = new Date(d[2], d[1]-1, d[0], t[0], t[1], 0);
+    return naive;
+  }
+
+  /* Ora corrente nel fuso Europe/Rome (funziona anche se il browser è in altro fuso) */
+  function nowRome() {
+    var s = new Date().toLocaleString('en-US', { timeZone:'Europe/Rome' });
+    return new Date(s);
+  }
+
+  function render() {
+    var now = nowRome();
+
+    var list = EVENTS
+      .map(function(e) {
+        return {
+          start:  toRomeDate(e.data, e.ora_inizio),
+          end:    toRomeDate(e.data, e.ora_fine),
+          titolo: e.titolo,
+          link:   e.link,
+          oi:     e.ora_inizio,
+          of:     e.ora_fine
+        };
+      })
+      .filter(function(e) { return e.end > now; })
+      .sort(function(a,b) { return a.start - b.start; })
+      .slice(0, 6);
+
+    var rows = '';
+
+    list.forEach(function(e) {
+      var dd   = ('0' + e.start.getDate()).slice(-2);
+      var mm   = MESI[e.start.getMonth()];
+      var gg   = GIORNI[e.start.getDay()];
+      var diff = e.start - now;
+      var isLive = now >= e.start && now < e.end;
+      var isSoon = !isLive && diff > 0 && diff <= 30 * 60 * 1000;
+
+      var badge = '';
+      if (isLive)      badge = '<span class="badge-live">● LIVE</span>';
+      else if (isSoon) badge = '<span class="badge-soon">Tra poco live</span>';
+
+      rows += ''
+        + '<a class="ev" href="' + (e.link || '#') + '" target="_blank">'
+        +   '<div class="ev-date">'
+        +     '<div class="ev-dd">' + dd + '</div>'
+        +     '<div class="ev-mm">' + mm + '</div>'
+        +   '</div>'
+        +   '<div class="ev-info">'
+        +     '<div class="ev-title">' + e.titolo + '</div>'
+        +     '<div class="ev-time">' + gg + ' · ' + e.oi + ' – ' + e.of + '</div>'
+        +   '</div>'
+        +   badge
+        + '</a>';
+    });
+
+    if (!rows) {
+      rows = '<div class="empty">Nessun webinar in programma</div>';
+    }
+
+    document.getElementById('cal').innerHTML = ''
+      + '<div class="cal-wrap">'
+      +   '<div class="cal-header">'
+      +     '<div class="cal-title">Calendario webinar Genya</div>'
+      +     '<div class="cal-sub">Prossimi eventi in programma</div>'
+      +   '</div>'
+      +   '<div class="cal-body">' + rows + '</div>'
+      + '</div>';
+  }
+
+  render();
+  setInterval(render, 30000);
+
+})();
+</script>
+
+</body>
+</html>
