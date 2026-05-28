@@ -20,7 +20,7 @@
     ╚══════════════════════════════════════════════════════════════════╝ */
 
 var EVENTS = [
-  { data:"28/05/2026", ora_inizio:"08:00", ora_fine:"22:00", titolo:"Overview",                   link:"https://google.com.au" },
+  { data:"28/05/2026", ora_inizio:"08:00", ora_fine:"20:00", titolo:"Overview",                   link:"https://google.com.au" },
   { data:"28/05/2026", ora_inizio:"22:30", ora_fine:"23:30", titolo:"Contabilità IVA base",       link:"https://google.com.au" },
   { data:"30/05/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Contabilità generale",       link:"https://google.com.au" },
   { data:"02/06/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Gestione cespiti",           link:"https://google.com.au" },
