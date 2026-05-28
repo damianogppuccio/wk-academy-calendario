@@ -1,53 +1,72 @@
-# Calendario Webinar Genya — Widget per Docebo
+# Calendario Webinar Genya — Widget Docebo
 
-## Architettura (2 file)
+## Architettura (4 file)
 
 ```
 📁 cartella sul server
-├── index.html    ← NON toccare mai. Contiene grafica e logica.
-└── events.js     ← UNICO file da modificare. Contiene gli eventi.
+├── diretta.html      ← iframe homepage Genya DIRETTA  (mostra Webinar + Q&A + Talks)
+├── indiretta.html    ← iframe homepage Genya INDIRETTA (mostra Webinar + Talks, NO Q&A)
+├── events.js         ← 🔴 UNICO FILE DA MODIFICARE — contiene tutti gli eventi
+└── calendario.js     ← motore del widget — NON toccare
 ```
 
-**Perché due file?**
-`index.html` carica `events.js` aggiungendo `?v=1716912345678` (timestamp) all'URL.
-Ogni volta che un utente apre la pagina, il browser vede un URL diverso e scarica
-gli eventi freschi dal server. Zero problemi di cache.
+## Setup su Docebo
 
----
+1. Caricare i 4 file nella **stessa cartella** sul server web
+2. Homepage Genya Diretta → widget iframe → URL di `diretta.html` → altezza **440px**
+3. Homepage Genya Indiretta → widget iframe → URL di `indiretta.html` → altezza **440px**
 
-## Aggiornare gli eventi
+## Come aggiornare gli eventi
 
-1. Aprire `events.js` sul server
-2. Modificare le righe dentro `var EVENTS = [ ... ]`
-3. Salvare
+Aprire `events.js` e modificare le tre sezioni:
 
-Formato di ogni riga:
+### WEBINAR — visibili su entrambi gli iframe
 ```javascript
-{ data:"GG/MM/AAAA", ora_inizio:"HH:MM", ora_fine:"HH:MM", titolo:"Nome", link:"https://..." },
+var WEBINAR = [
+  { data:"GG/MM/AAAA", ora_inizio:"HH:MM", ora_fine:"HH:MM", titolo:"Nome", link:"https://..." },
+];
 ```
 
-- **data** → formato italiano GG/MM/AAAA
-- **ora_inizio / ora_fine** → formato 24h, orario Roma
-- **titolo** → nome del webinar
-- **link** → URL iscrizione o accesso
+### QA — visibili SOLO su iframe diretta
+```javascript
+var QA = [
+  { data:"GG/MM/AAAA", ora_inizio:"HH:MM", ora_fine:"HH:MM", titolo:"Nome", link:"https://..." },
+];
+```
 
----
+### TALKS — visibili su entrambi, in evidenza in fondo al calendario
+```javascript
+var TALKS = [
+  { data:"GG/MM/AAAA", ora_inizio:"HH:MM", ora_fine:"HH:MM", titolo:"Nome", link:"https://..." },
+];
+```
 
-## Deploy
+## Regole importanti
 
-1. Caricare `index.html` e `events.js` nella **stessa cartella** sul server
-2. In Docebo → widget **iframe** → incollare URL di `index.html`
-3. Altezza iframe: **~430 px**
-
----
+- Gli eventi passati vengono **ignorati automaticamente**. Puoi lasciarli nel file.
+- Pulisci quando vuoi per tenere il file ordinato.
+- Ogni riga DEVE finire con una **virgola**
+- Usare solo **doppi apici** " (non apici singoli ')
+- Formato data: **GG/MM/AAAA** — Formato ora: **HH:MM** (24h, orario Roma)
 
 ## Logica automatica
 
-| Stato | Dot timeline | Badge |
-|---|---|---|
-| Evento futuro | 🟢 Verde | — |
-| < 30 min all'inizio | 🟠 Arancione | **Tra poco live** |
-| In corso | 🔴 Rosso | **● LIVE** lampeggiante |
-| Terminato | Scompare | — |
+| Tipo | Dove appare | Posizione | N. slot |
+|---|---|---|---|
+| Webinar | Diretta + Indiretta | Lista rolling | 5 (con Talk) o 6 (senza) |
+| Q&A | Solo Diretta | Lista rolling (sfondo azzurro + badge) | Conta come slot rolling |
+| Academy Talk | Diretta + Indiretta | Fisso in fondo (verde) | 1 (il prossimo non terminato) |
 
-Mostra sempre i prossimi 6 eventi. Si aggiorna ogni 30 secondi.
+| Stato | Badge |
+|---|---|
+| Evento futuro | Nessuno |
+| < 30 min all'inizio | **Tra poco live** (arancione) |
+| In corso | **● LIVE** (rosso lampeggiante) |
+| Terminato | Scompare dalla lista |
+
+I badge LIVE / Tra poco live funzionano anche sull'Academy Talk.
+
+## Cache
+
+Il widget carica `events.js` e `calendario.js` con un timestamp (`?v=1716912345678`).
+Ogni apertura della pagina scarica i file freschi. Zero problemi di cache.
