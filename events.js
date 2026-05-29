@@ -30,8 +30,8 @@
    ═══════════════════════════════════════ */
 
 var WEBINAR = [
-  { data:"29/05/2026", ora_inizio:"10:00", ora_fine:"22:00", titolo:"Overview",                   link:"https://google.com.au" },
-  { data:"29/05/2026", ora_inizio:"10:30", ora_fine:"15:30", titolo:"Contabilità IVA base",       link:"https://google.com.au" },
+  { data:"29/05/2026", ora_inizio:"12:30", ora_fine:"22:00", titolo:"Overview",                   link:"https://google.com.au" },
+  { data:"29/05/2026", ora_inizio:"12:45", ora_fine:"15:30", titolo:"Contabilità IVA base",       link:"https://google.com.au" },
   { data:"30/05/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Contabilità generale",       link:"https://google.com.au" },
   { data:"02/06/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Gestione cespiti",           link:"https://google.com.au" },
   { data:"06/06/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Bilancio e chiusure",        link:"https://google.com.au" },
