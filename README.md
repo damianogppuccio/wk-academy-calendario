@@ -502,6 +502,6 @@ Nessun'altra dipendenza. Zero framework. JavaScript vanilla.
 
 | Data | Versione | Modifiche |
 |---|---|---|
-| Maggio 2026 | v1.0 | Widget sidebar singolo con rolling 6 eventi |
+| Marzo  2026 | v1.0 | Widget sidebar singolo con rolling 6 eventi |
 | Maggio 2026 | v2.0 | Separazione diretta/indiretta, 3 array separati (WEBINAR, QA, TALKS), sezione Talk in fondo, cache-busting, design WK brand |
 | Maggio 2026 | v3.0 (in sviluppo) | Calendario mensile con griglia lun-ven, navigazione 4 mesi, filtri, popup overflow, dot live |
