@@ -30,18 +30,24 @@
    ═══════════════════════════════════════ */
 
 var WEBINAR = [
-  { data:"29/05/2026", ora_inizio:"12:30", ora_fine:"22:00", titolo:"Overview",                   link:"https://google.com.au" },
-  { data:"29/05/2026", ora_inizio:"12:45", ora_fine:"15:30", titolo:"Contabilità IVA base",       link:"https://google.com.au" },
-  { data:"30/05/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Contabilità generale",       link:"https://google.com.au" },
-  { data:"02/06/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Gestione cespiti",           link:"https://google.com.au" },
-  { data:"06/06/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Bilancio e chiusure",        link:"https://google.com.au" },
-  { data:"09/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Dichiarazioni fiscali",      link:"https://google.com.au" },
-  { data:"13/06/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Fatturazione elettronica",   link:"https://google.com.au" },
-  { data:"16/06/2026", ora_inizio:"14:00", ora_fine:"15:00", titolo:"F24 e versamenti",           link:"https://google.com.au" },
-  { data:"20/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Ratei e risconti",           link:"https://google.com.au" },
-  { data:"23/06/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Note di credito e debito",   link:"https://google.com.au" },
-  { data:"27/06/2026", ora_inizio:"14:00", ora_fine:"15:30", titolo:"Liquidazione IVA",           link:"https://google.com.au" },
-  { data:"30/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Registri contabili",         link:"https://google.com.au" },
+  { data:"09/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Gestione Modello 730 e RPF",       link:"https://academy.wolterskluwer.it/learn/learning-plans/80/gestione-modello-730-e-rpf/courses/658/gestione-modello-730-e-rpf-del-25062026" },
+  { data:"09/06/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Immobili e IMU",       link:"https://academy.wolterskluwer.it/learn/learning-plans/49/immobiliimu/courses/659/immobili-e-imu-del-09062026" },
+  { data:"10/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Bilancio Base",           link:"https://academy.wolterskluwer.it/learn/learning-plans/39/bilancio-base/courses/664/bilancio-base-del-10062026" },
+  { data:"10/06/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Bilancio Avanzato",        link:"https://academy.wolterskluwer.it/learn/learning-plans/38/bilancio-avanzato/courses/666/bilancio-avanzato-del-10062026" },
+  { data:"11/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Immobili e IMU",      link:"https://academy.wolterskluwer.it/learn/learning-plans/49/immobiliimu/courses/660/immobili-e-imu-del-11062026" },
+  { data:"11/06/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Modello Redditi Società",   link:"https://academy.wolterskluwer.it/learn/learning-plans/54/modello-redditi-societa/courses/668/modello-redditi-societa-del-11062026" },
+  { data:"15/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Contabilità Generale Base ed Estratto Conto",           link:"https://academy.wolterskluwer.it/learn/learning-plans/79/contabilita-generale-base-ed-estratto-conto/courses/672/contabilita-generale-base-ed-estratto-conto-del-15062026" },
+  { data:"15/06/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Modello Redditi Società",           link:"https://academy.wolterskluwer.it/learn/learning-plans/54/modello-redditi-societa/courses/669/modello-redditi-societa-del-15062026" },
+  { data:"17/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Parcellazione Base - Gestione Studio",   link:"https://academy.wolterskluwer.it/learn/learning-plans/56/parcellazione-e-gestione-studio/courses/670/parcellazione-base-gestione-studio-del-17062026" },
+  { data:"17/06/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Contabilità gen. avanzata e chiusure annuali",           link:"https://academy.wolterskluwer.it/learn/learning-plans/78/contabilita-gen-avanzata-e-chiusure-annuali/courses/671/contabilita-gen-avanzata-e-chiusure-annuali-del-17062026" },
+  { data:"23/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Cespiti e leasing",         link:"https://academy.wolterskluwer.it/learn/learning-plans/41/cespiti-e-leasing/courses/673/cespiti-e-leasing-del-23062026" },
+  { data:"23/06/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Adempimenti periodici Lipe/Intra/Aut",         link:"https://academy.wolterskluwer.it/learn/learning-plans/37/adempimperiodici-lipeintraaut/courses/674/adempimenti-periodici-lipeintraaut-del-23062026" },
+  { data:"24/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Bilancio Base",         link:"https://academy.wolterskluwer.it/learn/learning-plans/39/bilancio-base/courses/665/bilancio-base-del-24062026" },
+  { data:"24/06/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Bilancio Avanzato",         link:"https://academy.wolterskluwer.it/learn/learning-plans/38/bilancio-avanzato/courses/667/bilancio-avanzato-del-24062026" },
+  { data:"25/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Gestione Modello 730 e RPF",         link:"https://academy.wolterskluwer.it/learn/learning-plans/80/gestione-modello-730-e-rpf/courses/658/gestione-modello-730-e-rpf-del-25062026" },
+  { data:"25/06/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Modello Redditi Società",         link:"https://academy.wolterskluwer.it/learn/learning-plans/54/modello-redditi-societa/courses/675/modello-redditi-societa-del-25062026" },
+  { data:"30/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Contabilità IVA base",         link:"https://academy.wolterskluwer.it/learn/learning-plans/46/contabilita-iva-base/courses/649/contabilita-iva-base-del-30062026" },
+  { data:"30/06/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Contabilità IVA avanzato",         link:"https://academy.wolterskluwer.it/learn/learning-plans/45/contabilita-iva-avanzata/courses/651/contabilita-iva-avanzato-del-30062026" },
 ];
 
 
@@ -52,11 +58,9 @@ var WEBINAR = [
    ═══════════════════════════════════════ */
 
 var QA = [
-  { data:"29/05/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Sessione domande Contabilità",  link:"https://google.com.au" },
-  { data:"05/06/2026", ora_inizio:"14:00", ora_fine:"16:00", titolo:"Sessione domande IVA",          link:"https://google.com.au" },
-  { data:"12/06/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Sessione domande Bilancio",     link:"https://google.com.au" },
-  { data:"19/06/2026", ora_inizio:"14:00", ora_fine:"16:00", titolo:"Sessione domande Fiscale",      link:"https://google.com.au" },
-  { data:"26/06/2026", ora_inizio:"10:00", ora_fine:"12:00", titolo:"Sessione domande Cespiti",      link:"https://google.com.au" },
+  { data:"12/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"https://academy.wolterskluwer.it/learn/learning-plans/76/sessione-di-qa/courses/654/sessione-di-qa-del-12062026" },
+  { data:"19/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"https://academy.wolterskluwer.it/learn/learning-plans/76/sessione-di-qa/courses/655/sessione-di-qa-del-19062026" },
+  { data:"26/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"https://academy.wolterskluwer.it/learn/learning-plans/76/sessione-di-qa/courses/656/sessione-di-qa-del-26062026" },
 ];
 
 
@@ -69,6 +73,5 @@ var QA = [
    ═══════════════════════════════════════ */
 
 var TALKS = [
-  { data:"28/05/2026", ora_inizio:"21:00", ora_fine:"23:59", titolo:"AI e Automazione nello Studio",          link:"https://google.com.au" },
-  { data:"09/07/2026", ora_inizio:"18:00", ora_fine:"19:30", titolo:"Compliance Digitale: sfide e soluzioni", link:"https://google.com.au" },
-];
+  { data:"26/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Come attrarre talenti nello studio professionale",          link:"https://academy.wolterskluwer.it/learn/courses/705/giugno-2026-come-attrarre-talenti-nello-studio-professionale" },
+  ];
