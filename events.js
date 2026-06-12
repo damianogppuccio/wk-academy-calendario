@@ -73,5 +73,5 @@ var QA = [
    ═══════════════════════════════════════ */
 
 var TALKS = [
-  { data:"26/06/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Come attrarre talenti nello studio professionale",          link:"https://academy.wolterskluwer.it/learn/courses/705/giugno-2026-come-attrarre-talenti-nello-studio-professionale" },
+  { data:"26/06/2026", ora_inizio:"11:00", ora_fine:"12:00", titolo:"Come attrarre talenti nello studio professionale",          link:"https://academy.wolterskluwer.it/learn/courses/705/giugno-2026-come-attrarre-talenti-nello-studio-professionale" },
   ];
