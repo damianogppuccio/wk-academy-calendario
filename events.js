@@ -79,5 +79,5 @@ var QA = [
    ═══════════════════════════════════════ */
 
 var TALKS = [
-  { data:"17/07/2026", ora_inizio:"11:00", ora_fine:"12:00", titolo:"Come attrarre talenti nello studio professionale",          link:"https://academy.wolterskluwer.it/learn/courses/706/luglio-2026-costruire-una-strategia-ai-in-studio-dalla-scelta-degli-strumenti-alla-governance-dei-dati?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
+  { data:"17/07/2026", ora_inizio:"11:00", ora_fine:"12:00", titolo:"Costruire una strategia AI in studio: dalla scelta degli strumenti alla governance dei dati",          link:"https://academy.wolterskluwer.it/learn/courses/706/luglio-2026-costruire-una-strategia-ai-in-studio-dalla-scelta-degli-strumenti-alla-governance-dei-dati?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
   ];
