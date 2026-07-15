@@ -42,27 +42,26 @@ I widget sono progettati per essere caricati tramite **iframe** nei widget Doceb
 📁 cartella sul server (es. https://vostrosito.it/academy/calendario/)
 │
 ├── events.js                ← 🔴 UNICO FILE DA MODIFICARE
-│                               Contiene tutti gli eventi divisi in 3 sezioni:
-│                               WEBINAR, QA, TALKS
+│                               Contiene tutti gli eventi divisi in sezioni:
+│                               VACANZE, WEBINAR, QA, TALKS
 │
 ├── calendario.js            ← ⚙️ Motore dei widget sidebar
-│                               Gestisce: rolling, badge, filtri canale, timezone
+│                               Gestisce: rolling, badge, filtri canale,
+│                               timezone, modalità vacanze, sicurezza input
+│                               NON MODIFICARE
+│
+├── stile.css                ← 🎨 Foglio di stile condiviso dai widget sidebar
 │                               NON MODIFICARE
 │
 ├── diretta.html             ← 📺 Widget sidebar per homepage Genya DIRETTA
 │                               Imposta MOSTRA_QA = true
-│                               Carica events.js + calendario.js
 │                               NON MODIFICARE
 │
 ├── indiretta.html           ← 📺 Widget sidebar per homepage Genya INDIRETTA
 │                               Imposta MOSTRA_QA = false
-│                               Carica events.js + calendario.js
 │                               NON MODIFICARE
 │
-├── calendario-mensile.html  ← 📅 Widget calendario mensile (in sviluppo)
-│                               Vista griglia lun–ven, navigazione mesi,
-│                               filtri, popup overflow
-│                               Carica events.js + proprio motore interno
+├── calendario-mensile.html  ← 📅 Widget calendario mensile (alpha, non live)
 │                               NON MODIFICARE
 │
 └── README.md                ← 📖 Questo file
@@ -313,7 +312,11 @@ Il numero `1716912345678` è il timestamp del momento (`Date.now()`), quindi cam
 
 Nessun intervento necessario lato browser. Nessun hard refresh richiesto.
 
-### 8.4 Meta tag aggiuntivi
+### 8.4 Ricarica automatica per pagine aperte a lungo
+
+I badge si aggiornano ogni 30 secondi con i dati in memoria. In più, ogni **60 minuti** la pagina si ricarica completamente: così anche un cliente che tiene la homepage aperta per ore/giorni riceve gli aggiornamenti di `events.js` senza intervento.
+
+### 8.5 Meta tag aggiuntivi
 
 I file HTML contengono anche meta tag anti-cache come rete di sicurezza:
 
@@ -490,11 +493,62 @@ Non è obbligatorio: gli eventi passati vengono ignorati automaticamente. Tuttav
 
 ## 13. Dipendenze esterne
 
-| Risorsa | URL | Scopo | Rischio |
-|---|---|---|---|
-| Tabler Icons 3.6.0 | `cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.6.0/` | Icone (calendario, orologio, frecce, microfono) | Se il CDN è down, le icone non si vedono ma il widget resta funzionale |
+**Nessuna.** Dalla v2.2 le icone sono SVG inline disegnate nel motore. Zero CDN, zero framework, zero chiamate a terze parti. JavaScript vanilla. Il sistema funziona anche dietro firewall aziendali restrittivi.
 
-Nessun'altra dipendenza. Zero framework. JavaScript vanilla.
+---
+
+## 14. Modalità Pausa Estiva (Vacanze)
+
+### 14.1 Cosa fa
+
+Durante una finestra di date configurabile, i widget sidebar (`diretta.html` e `indiretta.html`) mostrano un banner illustrato "Buone vacanze" (spiaggia, palma, tramonto anni '90) al posto della lista eventi. Il calendario mensile NON è coinvolto.
+
+### 14.2 Come si attiva
+
+In `events.js`, sezione 0, compilare le due date:
+
+```javascript
+var VACANZE = {
+  inizio: "01/08/2026",     /* primo giorno di pausa  */
+  fine:   "31/08/2026",     /* ultimo giorno di pausa */
+};
+```
+
+### 14.3 Come si disattiva
+
+Lasciare le date vuote:
+
+```javascript
+var VACANZE = {
+  inizio: "",
+  fine:   "",
+};
+```
+
+### 14.4 Regole di funzionamento
+
+| Regola | Comportamento |
+|---|---|
+| **Priorità assoluta** | Durante la finestra, il banner vacanze sostituisce TUTTO: eventi rolling, Q&A e sezione Academy Talk. Anche se nell'array restano eventi con date dentro la finestra, vengono ignorati. |
+| **Auto-scadenza** | Il giorno dopo la data `fine`, il widget torna automaticamente a mostrare gli eventi. Nessun intervento manuale richiesto a settembre. |
+| **Inclusività date** | La finestra include entrambi gli estremi: da `inizio` 00:00 a `fine` 23:59 (orario Roma). |
+| **Scope** | Solo widget sidebar. Il calendario mensile (alpha) non è coinvolto. |
+| **Testo** | Il messaggio è definito nel motore (`calendario.js`): menziona la pausa di webinar e Academy Talks, il ritorno a settembre e la disponibilità dei contenuti on-demand. |
+
+### 14.4-bis Animazione durante la pausa
+
+Durante la finestra vacanze il widget non resta fermo sull'immagine: cicla in continuo tra due viste con una transizione a scorrimento orizzontale (0,6s).
+
+| Fase | Durata | Cosa mostra |
+|---|---|---|
+| Immagine | 20 secondi | Banner "Buone vacanze" (spiaggia) |
+| Calendario | 60 secondi | I prossimi eventi reali (settembre): così il cliente in pausa vede cosa lo aspetta al rientro |
+
+Il ciclo è: immagine (20s) → calendario (60s) → immagine (20s) → … all'infinito, finché dura la finestra vacanze. I badge LIVE / Tra poco live restano attivi anche nella fase calendario. Alla fine della finestra (1° settembre) il ciclo si ferma da solo e il widget torna alla vista calendario statica.
+
+### 14.5 Test consigliato prima del rilascio
+
+Per verificare il banner in anteprima senza aspettare agosto: impostare temporaneamente `inizio` a oggi e `fine` a domani, aprire il widget, verificare il banner, poi ripristinare le date reali.
 
 ---
 
@@ -502,6 +556,9 @@ Nessun'altra dipendenza. Zero framework. JavaScript vanilla.
 
 | Data | Versione | Modifiche |
 |---|---|---|
-| Marzo  2026 | v1.0 | Widget sidebar singolo con rolling 6 eventi |
+| Maggio 2026 | v1.0 | Widget sidebar singolo con rolling 6 eventi |
 | Maggio 2026 | v2.0 | Separazione diretta/indiretta, 3 array separati (WEBINAR, QA, TALKS), sezione Talk in fondo, cache-busting, design WK brand |
 | Maggio 2026 | v3.0 (in sviluppo) | Calendario mensile con griglia lun-ven, navigazione 4 mesi, filtri, popup overflow, dot live |
+| Luglio 2026 | v2.1 | Modalità Pausa Estiva: banner "Buone vacanze" illustrato (SVG inline) con finestra date configurabile in events.js, priorità assoluta, auto-scadenza |
+| Luglio 2026 | v2.2 | Hardening e pulizia: escape HTML su titoli (caratteri speciali sicuri), validazione link (solo https), validazione orari (fine > inizio), icone SVG inline al posto del CDN Tabler (zero dipendenze esterne), CSS estratto in stile.css condiviso, ricarica automatica completa ogni 60 minuti per pagine lasciate aperte |
+| Luglio 2026 | v2.3 | Animazione pausa estiva: durante la finestra vacanze il widget cicla tra immagine (20s) e prossimi eventi di settembre (60s) con transizione a scorrimento orizzontale |

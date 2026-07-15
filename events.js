@@ -2,7 +2,7 @@
     ║                                                                      ║
     ║   📅  EVENTI ACADEMY — UNICO FILE DA MODIFICARE  📅                ║
     ║                                                                      ║
-    ║   Tre sezioni separate: WEBINAR, QA, TALKS                          ║
+    ║   Quattro sezioni: VACANZE, WEBINAR, QA, TALKS                      ║
     ║   Compilare solo i campi indicati, non toccare altro.               ║
     ║                                                                      ║
     ║   ⚙️  Il widget filtra automaticamente gli eventi passati.          ║
@@ -24,6 +24,27 @@
 
 
 /* ═══════════════════════════════════════
+   SEZIONE 0 — PAUSA ESTIVA (VACANZE)
+   Durante la finestra qui sotto, ENTRAMBI
+   gli iframe mostrano il banner "Buone
+   vacanze" al posto degli eventi
+   (Talk inclusi: sparisce tutto).
+
+   La finestra scade da sola: dopo la
+   data "fine" il calendario torna
+   automaticamente a mostrare gli eventi.
+
+   Per DISATTIVARE le vacanze:
+   lasciare le date vuote → inizio:"", fine:""
+   ═══════════════════════════════════════ */
+
+var VACANZE = {
+  inizio: "01/08/2026",     /* primo giorno di pausa  (GG/MM/AAAA) */
+  fine:   "31/08/2026",     /* ultimo giorno di pausa (GG/MM/AAAA) */
+};
+
+
+/* ═══════════════════════════════════════
    SEZIONE 1 — WEBINAR
    Visibili su ENTRAMBI gli iframe
    (diretta e indiretta)
@@ -41,13 +62,12 @@ var WEBINAR = [
   { data:"15/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Parcellazione Base - Gestione Studio",           link:"https://academy.wolterskluwer.it/learn/learning-plans/56/parcellazione-e-gestione-studio/courses/697/parcellazione-base-gestione-studio-del-15072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
   { data:"15/07/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Modello Redditi Società",                        link:"https://academy.wolterskluwer.it/learn/learning-plans/54/modello-redditi-societa/courses/687/modello-redditi-societa-del-15072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
   { data:"21/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Adempimenti periodici Lipe/Intra/Aut",           link:"https://academy.wolterskluwer.it/learn/learning-plans/37/adempimperiodici-lipeintraaut/courses/699/adempimenti-periodici-lipeintraaut-del-21072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
-  {	data:"23/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Gestione Modello 730 e RPF",    				  link:"https://academy.wolterskluwer.it/learn/learning-plans/80/gestione-modello-730-e-rpf/courses/685/gestione-modello-730-e-rpf-del-23072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" }
   { data:"22/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Contabilità Generale Base ed Estratto Conto",    link:"https://academy.wolterskluwer.it/learn/learning-plans/79/contabilita-generale-base-ed-estratto-conto/courses/678/contabilita-generale-base-ed-estratto-conto-del-22072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
   { data:"22/07/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Contabilità gen. avanzata",                      link:"https://academy.wolterskluwer.it/learn/learning-plans/43/contabilita-generale-avanzata/courses/680/contabilita-gen-avanzata-del-22072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
-  { data:"23/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Modello Redditi Società",                        link:"https://academy.wolterskluwer.it/learn/learning-plans/54/modello-redditi-societa/courses/688/modello-redditi-societa-del-23072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
+  {	data:"23/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Gestione Modello 730 e RPF",    				  link:"https://academy.wolterskluwer.it/learn/learning-plans/80/gestione-modello-730-e-rpf/courses/685/gestione-modello-730-e-rpf-del-23072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" }
+  { data:"23/07/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Modello Redditi Società",                        link:"https://academy.wolterskluwer.it/learn/learning-plans/54/modello-redditi-societa/courses/688/modello-redditi-societa-del-23072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
   { data:"28/07/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Bilancio Base e Avanzato",                       link:"https://academy.wolterskluwer.it/learn/learning-plans/39/bilancio-base/courses/700/bilancio-del-28072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
-  
-];
+  ];
 
 
 /* ═══════════════════════════════════════
@@ -58,9 +78,8 @@ var WEBINAR = [
 
 var QA = [
   { data:"10/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"https://academy.wolterskluwer.it/learn/learning-plans/76/sessione-di-qa/courses/689/sessione-di-qa-del-10072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  { data:"17/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"https://academy.wolterskluwer.it/learn/learning-plans/76/sessione-di-qa/courses/690/sessione-di-qa-del-17072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  { data:"24/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"https://academy.wolterskluwer.it/learn/learning-plans/76/sessione-di-qa/courses/691/sessione-di-qa-del-24072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  { data:"31/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"https://academy.wolterskluwer.it/learn/learning-plans/76/sessione-di-qa/courses/692/sessione-di-qa-del-31072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
+  { data:"24/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"https://academy.wolterskluwer.it/learn/learning-plans/76/sessione-di-qa/courses/691/sessione-di-qa-del-24072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
+  { data:"31/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"https://academy.wolterskluwer.it/learn/learning-plans/76/sessione-di-qa/courses/692/sessione-di-qa-del-31072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
 ];
 
 
@@ -73,8 +92,5 @@ var QA = [
    ═══════════════════════════════════════ */
 
 var TALKS = [
-  { data:"28/07/2026", ora_inizio:"11:00", ora_fine:"12:00", titolo:"Costruire una strategia AI in studio: dalla scelta degli strumenti alla governance dei dati",          link:"https://academy.wolterskluwer.it/learn/courses/706/luglio-2026-costruire-una-strategia-ai-in-studio-dalla-scelta-degli-strumenti-alla-governance-dei-dati?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  ];
-
-
-
+  { data:"28/07/2026", ora_inizio:"11:00", ora_fine:"12:00", titolo:"Costruire una strategia AI in studio: dalla scelta degli strumenti alla governance dei dati", link:"https://academy.wolterskluwer.it/learn/courses/706/luglio-2026-costruire-una-strategia-ai-in-studio-dalla-scelta-degli-strumenti-alla-governance-dei-dati?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
+];
