@@ -16,9 +16,14 @@
     ║     titolo      →  "Nome evento"                                    ║
     ║     link        →  "https://..."       (URL iscrizione)             ║
     ║                                                                      ║
-    ║   ⚠️  Ogni riga DEVE finire con una virgola                         ║
-    ║   ⚠️  L'ultima riga di ogni sezione PUÒ avere la virgola           ║
+    ║   ⚠️  Ogni riga DEVE finire con una virgola  },                     ║
+    ║       Se ne manca UNA SOLA, tutto il calendario smette di           ║
+    ║       funzionare e mostra "Nessun webinar in programma".            ║
     ║   ⚠️  NON usare apici singoli ' — solo doppi apici "               ║
+    ║   ⚠️  NON usare il tasto TAB — solo spazi                          ║
+    ║                                                                      ║
+    ║   ✅  PRIMA DI CARICARE: incolla il file su jshint.com              ║
+    ║       per verificare che non ci siano errori di sintassi.           ║
     ║                                                                      ║
     ╚══════════════════════════════════════════════════════════════════════╝ */
 
@@ -64,10 +69,10 @@ var WEBINAR = [
   { data:"21/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Adempimenti periodici Lipe/Intra/Aut",           link:"https://academy.wolterskluwer.it/learn/learning-plans/37/adempimperiodici-lipeintraaut/courses/699/adempimenti-periodici-lipeintraaut-del-21072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
   { data:"22/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Contabilità Generale Base ed Estratto Conto",    link:"https://academy.wolterskluwer.it/learn/learning-plans/79/contabilita-generale-base-ed-estratto-conto/courses/678/contabilita-generale-base-ed-estratto-conto-del-22072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
   { data:"22/07/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Contabilità gen. avanzata",                      link:"https://academy.wolterskluwer.it/learn/learning-plans/43/contabilita-generale-avanzata/courses/680/contabilita-gen-avanzata-del-22072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
-  {	data:"23/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Gestione Modello 730 e RPF",    				  link:"https://academy.wolterskluwer.it/learn/learning-plans/80/gestione-modello-730-e-rpf/courses/685/gestione-modello-730-e-rpf-del-23072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
+  { data:"23/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Gestione Modello 730 e RPF",                     link:"https://academy.wolterskluwer.it/learn/learning-plans/80/gestione-modello-730-e-rpf/courses/685/gestione-modello-730-e-rpf-del-23072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
   { data:"23/07/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Modello Redditi Società",                        link:"https://academy.wolterskluwer.it/learn/learning-plans/54/modello-redditi-societa/courses/688/modello-redditi-societa-del-23072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
   { data:"28/07/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Bilancio Base e Avanzato",                       link:"https://academy.wolterskluwer.it/learn/learning-plans/39/bilancio-base/courses/700/bilancio-del-28072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
-  ];
+];
 
 
 /* ═══════════════════════════════════════
