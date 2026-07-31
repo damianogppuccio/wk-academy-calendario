@@ -53,25 +53,33 @@ var VACANZE = {
    SEZIONE 1 — WEBINAR
    Visibili su ENTRAMBI gli iframe
    (diretta e indiretta)
+
+   ⚠️  I link sono ancora VUOTI ("").
+       Vanno compilati con gli URL veri.
    ═══════════════════════════════════════ */
 
 var WEBINAR = [
-  { data:"02/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Overview",                                       link:"https://academy.wolterskluwer.it/learn/learning-plans/55/overview/courses/676/overview-del-02072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  { data:"02/07/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Contabilità Generale Base ed Estratto Conto",    link:"https://academy.wolterskluwer.it/learn/learning-plans/79/contabilita-generale-base-ed-estratto-conto/courses/677/contabilita-generale-base-ed-estratto-conto-del-02072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  { data:"07/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Cespiti e leasing",                              link:"https://academy.wolterskluwer.it/learn/learning-plans/37/adempimperiodici-lipeintraaut/courses/679/adempimenti-periodici-lipeintraaut-del-07072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  { data:"07/07/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Liquidaz. IVA/Ritenute acc/F24",                 link:"https://academy.wolterskluwer.it/learn/learning-plans/50/liquidazione-iva-ritenute-acconto-f24/courses/681/liquidaz-ivaritenute-accf24-del-07072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  { data:"09/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Delega Unica & Telematici",                      link:"https://academy.wolterskluwer.it/learn/learning-plans/63/delega-unica-telematici/courses/684/delega-unica-telematici-del-09072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  { data:"09/07/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Modello Redditi Società",                        link:"https://academy.wolterskluwer.it/learn/learning-plans/54/modello-redditi-societa/courses/686/modello-redditi-societa-del-09072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  { data:"14/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Contabilità IVA base",                           link:"https://academy.wolterskluwer.it/learn/learning-plans/46/contabilita-iva-base/courses/693/contabilita-iva-base-del-14072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  { data:"14/07/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Contabilità IVA avanzato",                       link:"https://academy.wolterskluwer.it/learn/learning-plans/45/contabilita-iva-avanzata/courses/695/contabilita-iva-avanzato-del-14072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  { data:"15/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Parcellazione Base - Gestione Studio",           link:"https://academy.wolterskluwer.it/learn/learning-plans/56/parcellazione-e-gestione-studio/courses/697/parcellazione-base-gestione-studio-del-15072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  { data:"15/07/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Modello Redditi Società",                        link:"https://academy.wolterskluwer.it/learn/learning-plans/54/modello-redditi-societa/courses/687/modello-redditi-societa-del-15072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  { data:"21/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Adempimenti periodici Lipe/Intra/Aut",           link:"https://academy.wolterskluwer.it/learn/learning-plans/37/adempimperiodici-lipeintraaut/courses/699/adempimenti-periodici-lipeintraaut-del-21072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
-  { data:"22/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Contabilità Generale Base ed Estratto Conto",    link:"https://academy.wolterskluwer.it/learn/learning-plans/79/contabilita-generale-base-ed-estratto-conto/courses/678/contabilita-generale-base-ed-estratto-conto-del-22072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
-  { data:"22/07/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Contabilità gen. avanzata",                      link:"https://academy.wolterskluwer.it/learn/learning-plans/43/contabilita-generale-avanzata/courses/680/contabilita-gen-avanzata-del-22072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
-  { data:"23/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Gestione Modello 730 e RPF",                     link:"https://academy.wolterskluwer.it/learn/learning-plans/80/gestione-modello-730-e-rpf/courses/685/gestione-modello-730-e-rpf-del-23072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
-  { data:"23/07/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Modello Redditi Società",                        link:"https://academy.wolterskluwer.it/learn/learning-plans/54/modello-redditi-societa/courses/688/modello-redditi-societa-del-23072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
-  { data:"28/07/2026", ora_inizio:"10:00", ora_fine:"11:30", titolo:"Bilancio Base e Avanzato",                       link:"https://academy.wolterskluwer.it/learn/learning-plans/39/bilancio-base/courses/700/bilancio-del-28072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
+  { data:"01/09/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Overview",                                         link:"" },
+  { data:"01/09/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Contabilità IVA base",                             link:"" },
+  { data:"02/09/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Contabilità IVA avanzato",                         link:"" },
+  { data:"02/09/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Liquidazione IVA/Ritenute acconto/F24",            link:"" },
+  { data:"03/09/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Adempimenti periodici Lipe/Intrastat/Autofatture", link:"" },
+  { data:"03/09/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Telematici & Dichiarazioni Integrative",           link:"" },
+  { data:"08/09/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Contabilità Generale Base ed Estratto Conto",      link:"" },
+  { data:"08/09/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Contabilità Generale Avanzata",                    link:"" },
+  { data:"09/09/2026", ora_inizio:"14:30", ora_fine:"15:30", titolo:"Modello 770",                                      link:"" },
+  { data:"10/09/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Overview",                                         link:"" },
+  { data:"10/09/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Contabilità IVA base",                             link:"" },
+  { data:"15/09/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Contabilità IVA avanzato",                         link:"" },
+  { data:"15/09/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Liquidazione IVA/Ritenute acconto/F24",            link:"" },
+  { data:"22/09/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Overview",                                         link:"" },
+  { data:"22/09/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Contabilità IVA base",                             link:"" },
+  { data:"23/09/2026", ora_inizio:"14:30", ora_fine:"15:30", titolo:"Contabilità Generale Base ed Estratto Conto",      link:"" },
+  { data:"24/09/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Adempimenti periodici Lipe/Intrastat/Autofatture", link:"" },
+  { data:"24/09/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Telematici & Dichiarazioni Integrative",           link:"" },
+  { data:"29/09/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Genya News - Novità e rilasci",                    link:"" },
+  { data:"30/09/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Modello 770",                                      link:"" },
+  { data:"30/09/2026", ora_inizio:"11:15", ora_fine:"12:15", titolo:"Contabilità Generale Avanzata",                    link:"" },
 ];
 
 
@@ -82,9 +90,10 @@ var WEBINAR = [
    ═══════════════════════════════════════ */
 
 var QA = [
-  { data:"10/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"https://academy.wolterskluwer.it/learn/learning-plans/76/sessione-di-qa/courses/689/sessione-di-qa-del-10072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q1_202607" },
-  { data:"24/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"https://academy.wolterskluwer.it/learn/learning-plans/76/sessione-di-qa/courses/691/sessione-di-qa-del-24072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
-  { data:"31/07/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"https://academy.wolterskluwer.it/learn/learning-plans/76/sessione-di-qa/courses/692/sessione-di-qa-del-31072026?utm_source=calendario_eventi&utm_medium=link&utm_campaign=ita_academy_genya_webinar_calendario_q2_202607" },
+  { data:"04/09/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"" },
+  { data:"11/09/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"" },
+  { data:"18/09/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"" },
+  { data:"25/09/2026", ora_inizio:"10:00", ora_fine:"11:00", titolo:"Sessione di Q&A",      link:"" },
 ];
 
 
@@ -94,8 +103,13 @@ var QA = [
    Il widget mostra il prossimo Talk
    non ancora terminato, in fondo
    al calendario in evidenza.
+
+   ⚠️  Il Talk qui sotto non ha ancora una DATA.
+       Appena la conosci, inserisci la data
+       (formato "GG/MM/AAAA") e il link, e
+       togli le due barre // davanti alla riga.
    ═══════════════════════════════════════ */
 
 var TALKS = [
-  {  },
+  // { data:"25/09/2026", ora_inizio:"11:00", ora_fine:"12:00", titolo:"Costruire una strategia AI in studio: dalla scelta degli strumenti alla governance dei dati", link:"" },
 ];
